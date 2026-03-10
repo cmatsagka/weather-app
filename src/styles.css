@@ -2,16 +2,17 @@
 
 :root {
 	--transition-speed: 2s;
-
 	--bg-top: hsl(40, 30%, 96%);
 	--bg-bottom: hsl(210, 20%, 90%);
 	--text-main: hsl(210, 10%, 25%);
 }
 
-body[data-weather*='rain'] {
-	--bg-top: hsl(220, 15%, 85%);
-	--bg-bottom: hsl(220, 10%, 65%);
-	--text-main: hsl(220, 20%, 20%);
+/* --- DAY STATES --- */
+
+body[data-weather*='clear'] {
+	--bg-top: hsl(195, 40%, 95%);
+	--bg-bottom: hsl(200, 30%, 85%);
+	--text-main: hsl(200, 40%, 30%);
 }
 
 body[data-weather*='cloudy'] {
@@ -20,10 +21,10 @@ body[data-weather*='cloudy'] {
 	--text-main: hsl(210, 5%, 20%);
 }
 
-body[data-weather*='clear'] {
-	--bg-top: hsl(190, 80%, 85%);
-	--bg-bottom: hsl(200, 70%, 75%);
-	--text-main: hsl(200, 50%, 30%);
+body[data-weather*='rain'] {
+	--bg-top: hsl(220, 15%, 85%);
+	--bg-bottom: hsl(220, 10%, 65%);
+	--text-main: hsl(220, 20%, 20%);
 }
 
 body[data-weather*='snow'] {
@@ -32,26 +33,26 @@ body[data-weather*='snow'] {
 	--text-main: hsl(200, 20%, 40%);
 }
 
-body[data-weather*='fog'] {
-	--bg-top: hsl(0, 0%, 90%);
-	--bg-bottom: hsl(0, 0%, 75%);
-	--text-main: hsl(0, 0%, 30%);
+body[data-weather*='fog'],
+body[data-weather*='mist'] {
+	--bg-top: hsl(0, 0%, 92%);
+	--bg-bottom: hsl(0, 0%, 80%);
+	--text-main: hsl(0, 0%, 35%);
 }
+
+body[data-weather*='storm'],
+body[data-weather*='thunder'] {
+	--bg-top: hsl(260, 10%, 70%);
+	--bg-bottom: hsl(260, 20%, 40%);
+	--text-main: hsl(260, 50%, 95%);
+}
+
+/* --- NIGHT STATES --- */
 
 body[data-weather*='night'] {
 	--bg-top: hsl(240, 20%, 12%);
 	--bg-bottom: hsl(260, 25%, 8%);
 	--text-main: hsl(210, 20%, 85%);
-}
-
-body[data-weather*='night'] #content {
-	background: hsla(0, 0%, 0%, 0.2);
-	border: 1px solid hsla(0, 0%, 100%, 0.1);
-}
-
-body[data-weather*='night'] #weatherIcon {
-	color: hsl(45, 90%, 85%);
-	filter: drop-shadow(0 0 20px hsla(45, 90%, 60%, 0.3));
 }
 
 body[data-weather='clear-night'] {
@@ -89,6 +90,10 @@ body {
 
 #logo {
 	margin: 2rem;
+	font-weight: 200;
+	letter-spacing: 0.5rem;
+	text-transform: uppercase;
+	opacity: 0.8;
 }
 
 #content {
