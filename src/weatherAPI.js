@@ -1,3 +1,5 @@
+//Note: In a production app, the API key would be handled via a backend
+//proxy or environment variables to prevent exposure.
 const apiKey = 'ATRZQUHP9DD8V55RUJYACGRT5';
 
 export async function getWeather(city) {

@@ -2,6 +2,8 @@
 
 **Aura** is a minimalist, airy weather application designed with a focus on atmospheric transitions and high-end UI/UX. Built as part of The Odin Project curriculum, it explores asynchronous data fetching, modular JavaScript, and dynamic CSS theming.
 
+[**🌐 View Live Demo**](https://cmatsagka.github.io/weather-app/)
+
 ## 🌟 The Design Philosophy
 
 Most weather apps feel static. **Aura** was built to feel like the sky itself. By using the **HSL (Hue, Saturation, Lightness)** color model and CSS Custom Properties (Variables), the entire application's mood—from the background gradient to the icon glow—morphs smoothly to match the current atmospheric conditions of the searched city.
