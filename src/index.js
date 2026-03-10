@@ -8,12 +8,22 @@ let currentUnit = 'C';
 let currentCity = null;
 
 async function handleSearch(city) {
+	const content = document.querySelector('#content');
+	const body = document.body;
+
+	content.classList.add('loading-blur');
+	body.classList.add('is-fetching');
+
 	const data = await getWeather(city);
 	if (data) {
 		currentWeatherData = data;
 		currentCity = city;
 		updateWeatherUI(currentWeatherData, city, currentUnit);
 	}
+
+	content.classList.remove('loading-blur');
+	body.classList.remove('is-fetching');
+
 	searchBtn.textContent = 'Search';
 	searchBtn.disabled = false;
 }

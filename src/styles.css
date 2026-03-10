@@ -108,6 +108,17 @@ body {
 	width: 350px;
 }
 
+.loading-blur {
+	filter: blur(8px);
+	opacity: 0.5;
+	pointer-events: none;
+	transition: all 0.5s ease;
+}
+
+body.is-fetching {
+	cursor: wait;
+}
+
 #weatherData {
 	opacity: 0;
 }
