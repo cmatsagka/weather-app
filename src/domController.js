@@ -1,4 +1,8 @@
 export function updateWeatherUI(data, city, unit = 'C') {
+	const weatherContainer = document.querySelector('#weatherData');
+	weatherContainer.classList.remove('animate-fade');
+	void weatherContainer.offsetWidth;
+
 	const tempElement = document.querySelector('#temp');
 	const conditionElement = document.querySelector('#condition');
 	const iconElement = document.querySelector('#weatherIcon');
@@ -17,6 +21,8 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	const tempValue = convertTemp(data.temp, unit);
 	tempElement.textContent = `${Math.round(tempValue)}°${unit}`;
 	conditionElement.textContent = `${data.condition}`;
+
+	weatherContainer.classList.add('animate-fade');
 
 	const body = document.querySelector('body');
 	let weatherMood = data.icon;
