@@ -19,5 +19,6 @@ export async function getWeather(city) {
 		return { temp, condition, icon };
 	} catch (error) {
 		console.log('The fetch failed: ', error.message);
+		return null;
 	}
 }
