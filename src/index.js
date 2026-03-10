@@ -2,10 +2,14 @@ import './styles.css';
 import { getWeather } from './weatherAPI.js';
 import { updateWeatherUI } from './domController.js';
 
+let currentWeatherData = null;
+let currentUnit = 'C';
+
 async function handleSearch(city) {
 	const data = await getWeather(city);
 	if (data) {
-		updateWeatherUI(data, city);
+		currentWeatherData = data;
+		updateWeatherUI(currentWeatherData, city, currentUnit);
 	}
 	searchBtn.textContent = 'Search';
 	searchBtn.disabled = false;
