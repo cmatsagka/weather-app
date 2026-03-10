@@ -22,19 +22,16 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	tempElement.textContent = `${Math.round(tempValue)}°${unit}`;
 	conditionElement.textContent = `${data.condition}`;
 
-	weatherContainer.classList.add('animate-fade');
-
-	const body = document.querySelector('body');
 	let weatherMood = data.icon;
-	if (data.icon.includes('cloudy')) weatherMood = 'cloudy';
-	else if (data.icon.includes('rain') || data.icon.includes('shower'))
-		weatherMood = 'rain';
-	else if (data.icon.includes('clear')) weatherMood = 'clear';
-	else if (data.icon.includes('snow')) weatherMood = 'snow';
-	else if (data.icon.includes('fog') || data.icon.includes('mist'))
-		weatherMood = 'fog';
 
+	if (!data.icon.includes('night')) {
+		if (data.icon.includes('cloudy')) weatherMood = 'cloudy';
+		else if (data.icon.includes('rain')) weatherMood = 'rain';
+		else if (data.icon.includes('clear')) weatherMood = 'clear';
+		else if (data.icon.includes('snow')) weatherMood = 'snow';
+	}
 	document.body.setAttribute('data-weather', weatherMood);
+	weatherContainer.classList.add('animate-fade');
 }
 
 function convertTemp(temp, unit) {
