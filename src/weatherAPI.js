@@ -11,7 +11,6 @@ export async function getWeather(city) {
 		}
 
 		const fetchedData = await response.json();
-		console.log('Success: ', fetchedData.currentConditions);
 		const temp = fetchedData.currentConditions.temp;
 		const condition = fetchedData.currentConditions.conditions;
 		const icon = fetchedData.currentConditions.icon;

@@ -1,4 +1,5 @@
 import './styles.css';
+import 'weather-icons/css/weather-icons.css';
 import { getWeather } from './weatherAPI.js';
 import { updateWeatherUI } from './domController.js';
 
@@ -32,7 +33,8 @@ form.addEventListener('submit', (e) => {
 toggleBtn.addEventListener('click', () => {
 	currentUnit = currentUnit === 'C' ? 'F' : 'C';
 	toggleBtn.textContent = currentUnit === 'C' ? 'Display °F' : 'Display °C';
+	const cityName = input.value;
 	if (currentWeatherData) {
-		updateWeatherUI(currentWeatherData, input.value, currentUnit);
+		updateWeatherUI(currentWeatherData, cityName, currentUnit);
 	}
 });
