@@ -12,7 +12,6 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	cityName.textContent = '';
 	tempElement.textContent = '';
 	conditionElement.textContent = '';
-	iconElement.textContent = '';
 
 	cityName.textContent = city;
 	const tempValue = convertTemp(data.temp, unit);

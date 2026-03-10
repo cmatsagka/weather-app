@@ -5,11 +5,13 @@ import { updateWeatherUI } from './domController.js';
 
 let currentWeatherData = null;
 let currentUnit = 'C';
+let currentCity = null;
 
 async function handleSearch(city) {
 	const data = await getWeather(city);
 	if (data) {
 		currentWeatherData = data;
+		currentCity = city;
 		updateWeatherUI(currentWeatherData, city, currentUnit);
 	}
 	searchBtn.textContent = 'Search';
@@ -35,6 +37,6 @@ toggleBtn.addEventListener('click', () => {
 	toggleBtn.textContent = currentUnit === 'C' ? 'Display °F' : 'Display °C';
 	const cityName = input.value;
 	if (currentWeatherData) {
-		updateWeatherUI(currentWeatherData, cityName, currentUnit);
+		updateWeatherUI(currentWeatherData, currentCity, currentUnit);
 	}
 });
