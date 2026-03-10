@@ -30,7 +30,7 @@ form.addEventListener('submit', (e) => {
 });
 
 toggleBtn.addEventListener('click', () => {
-	currentUnit = currentUnit === 'C' ? 'F' : 'c';
+	currentUnit = currentUnit === 'C' ? 'F' : 'C';
 	if (currentWeatherData) {
 		updateWeatherUI(currentWeatherData, input.value, currentUnit);
 	}
