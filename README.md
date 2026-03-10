@@ -55,7 +55,7 @@ src/
 
 ## 🏁 How to Run
 
-1. **Clone the repository:** `git clone https://github.com/cmatsagka/aura-weather.git`
+1. **Clone the repository:** `git clone https://github.com/cmatsagka/weather-app.git`
 
 2. **Install dependencies:** `npm install`
 
