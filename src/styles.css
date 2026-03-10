@@ -3,21 +3,21 @@
 :root {
 	--transition-speed: 2s;
 
-	--bg-top: hsl(200, 70%, 90%);
-	--bg-bottom: hsl(210, 50%, 80%);
-	--text-main: hsl(210, 30%, 25%);
+	--bg-top: hsl(40, 30%, 96%);
+	--bg-bottom: hsl(210, 20%, 90%);
+	--text-main: hsl(210, 10%, 25%);
 }
 
 body[data-weather*='rain'] {
-	--bg-top: hsl(220, 30%, 75%);
-	--bg-bottom: hsl(230, 20%, 55%);
-	--text-main: hsl(230, 40%, 95%);
+	--bg-top: hsl(220, 15%, 85%);
+	--bg-bottom: hsl(220, 10%, 65%);
+	--text-main: hsl(220, 20%, 20%);
 }
 
 body[data-weather*='cloudy'] {
-	--bg-top: hsl(200, 10%, 85%);
-	--bg-bottom: hsl(210, 5%, 65%);
-	--text-main: hsl(210, 20%, 20%);
+	--bg-top: hsl(210, 10%, 90%);
+	--bg-bottom: hsl(210, 10%, 75%);
+	--text-main: hsl(210, 5%, 20%);
 }
 
 body[data-weather*='clear'] {
@@ -39,26 +39,25 @@ body[data-weather*='fog'] {
 }
 
 body[data-weather*='night'] {
-	--bg-top: hsl(230, 40%, 15%);
-	--bg-bottom: hsl(240, 50%, 5%);
-	--text-main: hsl(230, 100%, 95%);
+	--bg-top: hsl(240, 20%, 12%);
+	--bg-bottom: hsl(260, 25%, 8%);
+	--text-main: hsl(210, 20%, 85%);
 }
 
 body[data-weather*='night'] #content {
-	background: hsla(230, 50%, 100%, 0.05);
-	border: 1px solid hsla(230, 100%, 100%, 0.1);
-	box-shadow: 0 15px 50px hsla(240, 100%, 0%, 0.5);
+	background: hsla(0, 0%, 0%, 0.2);
+	border: 1px solid hsla(0, 0%, 100%, 0.1);
 }
 
 body[data-weather*='night'] #weatherIcon {
-	color: hsl(45, 100%, 70%);
-	filter: drop-shadow(0 0 15px hsla(45, 100%, 70%, 0.4));
+	color: hsl(45, 90%, 85%);
+	filter: drop-shadow(0 0 20px hsla(45, 90%, 60%, 0.3));
 }
 
 body[data-weather='clear-night'] {
-	--bg-top: hsl(240, 60%, 10%);
-	--bg-bottom: hsl(260, 50%, 5%);
-	--text-main: hsl(220, 100%, 90%);
+	--bg-top: hsl(200, 30%, 10%);
+	--bg-bottom: hsl(220, 40%, 5%);
+	--text-main: hsl(180, 20%, 90%);
 }
 
 body[data-weather*='cloudy-night'] {
@@ -93,13 +92,13 @@ body {
 }
 
 #content {
-	background: hsla(0, 0%, 100%, 0.2);
-	backdrop-filter: blur(20px);
-	-webkit-backdrop-filter: blur(20px);
-	border: 1px solid hsla(0, 0%, 100%, 0.3);
+	background: hsla(0, 0%, 100%, 0.1);
+	backdrop-filter: blur(30px) saturate(150%);
+	-webkit-backdrop-filter: blur(30px) saturate(150%);
+	border: 1px solid hsla(0, 0%, 100%, 0.2);
 	padding: 3rem;
 	border-radius: 30px;
-	box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.05);
+	box-shadow: 0 20px 50px hsla(0, 0%, 0%, 0.03);
 	text-align: center;
 	width: 350px;
 }
@@ -162,6 +161,7 @@ body {
 #weatherIcon {
 	font-size: 5rem;
 	margin: 1.5rem 0;
+	filter: drop-shadow(0 4px 10px hsla(0, 0%, 0%, 0.1));
 	display: block;
 }
 
