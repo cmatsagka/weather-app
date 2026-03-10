@@ -5,6 +5,11 @@ export function updateWeatherUI(data, city) {
 	const cityName = document.querySelector('#cityName');
 	city = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
 
+	cityName.textContent = '';
+	tempElement.textContent = '';
+	conditionElement.textContent = '';
+	iconElement.textContent = '';
+
 	cityName.textContent = city;
 	tempElement.textContent = `${data.temp}`;
 	conditionElement.textContent = `${data.condition}`;
