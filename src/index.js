@@ -8,6 +8,7 @@ async function handleSearch(city) {
 		updateWeatherUI(data, city);
 	}
 	searchBtn.textContent = 'Search';
+	searchBtn.disabled = false;
 }
 
 const searchBtn = document.querySelector('#search-btn');
@@ -18,6 +19,7 @@ form.addEventListener('submit', (e) => {
 	e.preventDefault();
 	const cityName = input.value;
 	searchBtn.textContent = 'Searching...';
+	searchBtn.disabled = true;
 
 	handleSearch(cityName);
 });
