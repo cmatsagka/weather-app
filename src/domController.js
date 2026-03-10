@@ -17,6 +17,15 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	const tempValue = convertTemp(data.temp, unit);
 	tempElement.textContent = `${Math.round(tempValue)}°${unit}`;
 	conditionElement.textContent = `${data.condition}`;
+
+	const body = document.querySelector('body');
+	let weatherMood = data.icon;
+	if (data.icon.includes('cloudy')) weatherMood = 'cloudy';
+	if (data.icon.includes('rain')) weatherMood = 'rain';
+	if (data.icon.includes('clear')) weatherMood = 'clear';
+	if (data.icon.includes('snow')) weatherMood = 'snow';
+
+	document.body.setAttribute('data-weather', weatherMood);
 }
 
 function convertTemp(temp, unit) {
