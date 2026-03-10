@@ -132,6 +132,7 @@ body.is-fetching {
 #cityInput {
 	background: transparent;
 	border: none;
+	border-radius: 12px;
 	border-bottom: 2px solid var(--text-main);
 	color: var(--text-main);
 	padding: 5px;
