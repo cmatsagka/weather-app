@@ -1,5 +1,5 @@
 const apiKey = 'ATRZQUHP9DD8V55RUJYACGRT5';
-//const apiKey = api-key;
+
 export async function getWeather(city) {
 	const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${apiKey}&contentType=json`;
 
