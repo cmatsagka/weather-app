@@ -24,11 +24,20 @@ export function updateWeatherUI(data, city, unit = 'C') {
 
 	let weatherMood = data.icon;
 
-	if (!data.icon.includes('night')) {
-		if (data.icon.includes('cloudy')) weatherMood = 'cloudy';
-		else if (data.icon.includes('rain')) weatherMood = 'rain';
-		else if (data.icon.includes('clear')) weatherMood = 'clear';
-		else if (data.icon.includes('snow')) weatherMood = 'snow';
+	if (data.icon.includes('night')) {
+		weatherMood = data.icon;
+	} else if (data.icon.includes('thunder') || data.icon.includes('storm')) {
+		weatherMood = 'storm';
+	} else if (data.icon.includes('rain') || data.icon.includes('showers')) {
+		weatherMood = 'rain';
+	} else if (data.icon.includes('cloudy')) {
+		weatherMood = 'cloudy';
+	} else if (data.icon.includes('clear')) {
+		weatherMood = 'clear';
+	} else if (data.icon.includes('snow')) {
+		weatherMood = 'snow';
+	} else if (data.icon.includes('fog') || data.icon.includes('mist')) {
+		weatherMood = 'fog';
 	}
 	document.body.setAttribute('data-weather', weatherMood);
 	weatherContainer.classList.add('animate-fade');
@@ -42,6 +51,9 @@ const iconClassMap = {
 	snow: 'wi-snow',
 	rain: 'wi-rain',
 	fog: 'wi-fog',
+	'thunder-showers-day': 'wi-day-thunderstorm',
+	'thunder-showers-night': 'wi-night-alt-thunderstorm',
+	'thunder-rain': 'wi-thunderstorm',
 	wind: 'wi-strong-wind',
 	cloudy: 'wi-cloudy',
 	'partly-cloudy-day': 'wi-day-cloudy',
