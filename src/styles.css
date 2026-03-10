@@ -117,3 +117,20 @@ body {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }
+
+@keyframes auraFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+		filter: blur(5px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+		filter: blur(0);
+	}
+}
+
+.animate-fade {
+	animation: auraFadeIn 0.8s ease-out forwards;
+}
