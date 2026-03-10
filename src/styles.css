@@ -62,3 +62,25 @@ body {
 	text-align: center;
 	width: 350px;
 }
+
+#searchForm {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 2rem;
+}
+
+#cityInput {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid var(--text-color);
+	color: var(--text-color);
+	padding: 5px;
+	outline: none;
+	flex-grow: 1;
+}
+
+#weatherIcon {
+	font-size: 5rem;
+	margin: 1.5rem 0;
+	display: block;
+}
