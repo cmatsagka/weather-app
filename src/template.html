@@ -3,9 +3,29 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>Weather App</title>
 	</head>
 	<body>
-		<div id="content"></div>
+		<header>
+			<h2 id="logo">Weather App</h2>
+		</header>
+		<div id="content">
+			<form id="searchForm">
+				<input
+					type="text"
+					id="cityInput"
+					placeholder="Enter city name..."
+					required
+				/>
+				<button type="submit">Search</button>
+			</form>
+
+			<div id="city"></div>
+			<div id="weatherData">
+				<div id="temp"></div>
+				<div id="condition"></div>
+				<div id="icon"></div>
+			</div>
+		</div>
 	</body>
 </html>
