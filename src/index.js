@@ -8,3 +8,12 @@ async function handleSearch(city) {
 		updateWeatherUI(data);
 	}
 }
+
+const form = document.querySelector('#searchForm');
+const input = document.querySelector('#cityInput');
+
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	const cityName = input.value;
+	handleSearch(cityName);
+});
