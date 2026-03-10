@@ -1,34 +1,41 @@
 @import url('https://rsms.me/inter/inter.css');
 
 :root {
-	--bg-gradient: linear-gradient(
-		135deg,
-		hsl(169, 75%, 69%) 0%,
-		hsl(229, 59%, 76%) 100%
-	);
-	--glass-bg: hsla(0, 0%, 100%, 0.2);
-	--text-color: hsl(210, 29%, 24%);
-	--accent-color: hsl(37, 90%, 51%);
+	--transition-speed: 2s;
+
+	--bg-top: hsl(200, 70%, 90%);
+	--bg-bottom: hsl(210, 50%, 80%);
+	--text-main: hsl(210, 30%, 25%);
 }
 
-[data-weather='rain'] {
-	--bg-gradient: linear-gradient(
-		135deg,
-		hsl(222, 17%, 45%) 0%,
-		hsl(219, 39%, 41%) 100%
-	);
-	--glass-bg: hsla(0, 0%, 0%, 0.102);
-	--text-color: hsl(192, 15%, 94%);
-	--accent-color: hsl(204, 70%, 53%);
+body[data-weather*='rain'] {
+	--bg-top: hsl(220, 30%, 75%);
+	--bg-bottom: hsl(230, 20%, 55%);
+	--text-main: hsl(230, 40%, 95%);
 }
 
-[data-weather='cloudy'] {
-	--bg-gradient: linear-gradient(
-		135deg,
-		hsl(204, 8%, 76%) 0%,
-		hsl(210, 29%, 24%) 100%
-	);
-	--text-color: hsl(0, 0%, 100%);
+body[data-weather*='cloudy'] {
+	--bg-top: hsl(200, 10%, 85%);
+	--bg-bottom: hsl(210, 5%, 65%);
+	--text-main: hsl(210, 20%, 20%);
+}
+
+body[data-weather*='clear'] {
+	--bg-top: hsl(190, 80%, 85%);
+	--bg-bottom: hsl(200, 70%, 75%);
+	--text-main: hsl(200, 50%, 30%);
+}
+
+body[data-weather*='snow'] {
+	--bg-top: hsl(190, 20%, 98%);
+	--bg-bottom: hsl(200, 20%, 88%);
+	--text-main: hsl(200, 20%, 40%);
+}
+
+body[data-weather*='fog'] {
+	--bg-top: hsl(0, 0%, 90%);
+	--bg-bottom: hsl(0, 0%, 75%);
+	--text-main: hsl(0, 0%, 30%);
 }
 
 * {
@@ -39,23 +46,23 @@
 
 body {
 	min-height: 100vh;
-	background: var(--bg-gradient);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	transition: background 1s ease;
-	color: var(--text-color);
 	font-family: 'Inter', sans-serif;
 	@supports (font-variation-settings: normal) {
 		font-family: 'Inter var', sans-serif;
 	}
+	background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+	color: var(--text-main);
+	transition: all var(--transition-speed) ease-in-out;
 }
 
 #content {
-	background: var(--glass-bg);
+	background: var(--bg-top);
 	backdrop-filter: blur(15px);
-	border: 1px solid hsla(0, 0%, 100%, 0.3);
+	border: 1px solid var(--bg-bottom);
 	padding: 3rem;
 	border-radius: 30px;
 	box-shadow: 30px;
@@ -72,8 +79,8 @@ body {
 #cityInput {
 	background: transparent;
 	border: none;
-	border-bottom: 2px solid var(--text-color);
-	color: var(--text-color);
+	border-bottom: 2px solid var(--text-main);
+	color: var(--text-main);
 	padding: 5px;
 	outline: none;
 	flex-grow: 1;
