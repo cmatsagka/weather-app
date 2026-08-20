@@ -4,6 +4,8 @@
 
 [**🌐 View Live Demo**](https://cmatsagka.github.io/weather-app/)
 
+![Aura Preview Image](src/assets/image.png)
+
 ## 🌟 The Design Philosophy
 
 Most weather apps feel static. **Aura** was built to feel like the sky itself. By using the **HSL (Hue, Saturation, Lightness)** color model and CSS Custom Properties (Variables), the entire application's mood—from the background gradient to the icon glow—morphs smoothly to match the current atmospheric conditions of the searched city.
