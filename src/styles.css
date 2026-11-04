@@ -182,7 +182,7 @@ main {
 	align-items: center;
 	gap: var(--space-md);
 	width: 100%;
-	max-width: clamp(350px, 50vw, 750px);
+	max-width: clamp(350px, 55vw, 1000px);
 	margin: var(--space-md) 0;
 	padding: 0 var(--space-md);
 }
@@ -197,7 +197,7 @@ main {
 	box-shadow: var(--card-shadow);
 	text-align: center;
 	width: 100%;
-	/* max-width: clamp(350px, 50vw, 550px); */
+	max-width: clamp(350px, 50vw, 480px);
 	opacity: 0;
 }
 
@@ -298,17 +298,18 @@ body.is-fetching {
 
 #forecast-section {
 	display: flex;
-	gap: var(--space-xs);
-	padding-bottom: var(--space-sm);
+	gap: var(--space-sm);
+	padding: var(--space-xs) 0;
 	width: 100%;
-	overflow-x: hidden;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
 }
 
 .forecast-card {
-	flex: 1 1 0;
-	min-width: 0;
+	flex: 1 0 110px;
+	min-width: 110px;
 	background: var(--card-bg);
-	padding: var(--space-sm);
+	padding: var(--space-sm) var(--space-xs);
 	border-radius: var(--radius-sm);
 	text-align: center;
 	display: flex;
@@ -325,7 +326,7 @@ body.is-fetching {
 
 .forecast-temps {
 	display: flex;
-	gap: 0.5rem;
+	gap: 0.4rem;
 	font-size: var(--font-sm);
 }
 
