@@ -2,9 +2,7 @@
 //proxy or environment variables to prevent exposure.
 const apiKey = 'ATRZQUHP9DD8V55RUJYACGRT5';
 
-export async function getWeather(city) {
-	const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${apiKey}&contentType=json`;
-
+async function fetchWeather(url) {
 	try {
 		const response = await fetch(url);
 
@@ -13,7 +11,12 @@ export async function getWeather(city) {
 		}
 
 		const fetchedData = await response.json();
-		const current = fetchedData.currentConditions;
+
+		const rawAddress = fetchedData.resolvedAddress || '';
+		const isCoords = /^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$/.test(
+			rawAddress.trim()
+		);
+		const cityName = isCoords ? 'Current Location' : rawAddress;
 
 		const temp = fetchedData.currentConditions.temp;
 		const condition = fetchedData.currentConditions.conditions;
@@ -25,6 +28,7 @@ export async function getWeather(city) {
 		const forecast = fetchedData.days ? fetchedData.days.slice(0, 7) : [];
 
 		return {
+			cityName,
 			temp,
 			condition,
 			icon,
@@ -37,4 +41,15 @@ export async function getWeather(city) {
 		console.log('The fetch failed: ', error.message);
 		return null;
 	}
+}
+
+export async function getWeather(city) {
+	const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(city)}?unitGroup=metric&key=${apiKey}&contentType=json`;
+	return await fetchWeather(url);
+}
+
+export async function getWeatherByCoords(lat, lon) {
+	const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${lat},${lon}?unitGroup=metric&key=${apiKey}&contentType=json`;
+
+	return await fetchWeather(url);
 }

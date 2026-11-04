@@ -50,9 +50,9 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	const uvDesc = document.querySelector('#uv-desc');
 
 	const template = document.querySelector('#forecast-card-template');
-
+	const rawCity = city || data.cityName || 'Unknown Location';
 	const formattedCity =
-		city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
+		rawCity.charAt(0).toUpperCase() + rawCity.slice(1).toLowerCase();
 
 	if (iconElement) {
 		iconElement.className = 'wi';
