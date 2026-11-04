@@ -13,11 +13,18 @@ export async function getWeather(city) {
 		}
 
 		const fetchedData = await response.json();
+		const current = fetchedData.currentConditions;
+
 		const temp = fetchedData.currentConditions.temp;
 		const condition = fetchedData.currentConditions.conditions;
 		const icon = fetchedData.currentConditions.icon;
+		const humidity = fetchedData.currentConditions.humidity;
+		const windSpeed = fetchedData.currentConditions.windspeed;
+		const uvIndex = fetchedData.currentConditions.uvindex;
 
-		return { temp, condition, icon };
+		const forecast = fetchedData.days ? fetchedData.days.slice(0, 7) : [];
+
+		return { temp, condition, icon, humidity, windSpeed, uvIndex };
 	} catch (error) {
 		console.log('The fetch failed: ', error.message);
 		return null;
