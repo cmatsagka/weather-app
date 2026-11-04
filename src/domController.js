@@ -78,8 +78,8 @@ export function updateWeatherUI(data, city, unit = 'C') {
 			const maxTemp = Math.round(convertTemp(day.tempmax, unit));
 			const minTemp = Math.round(convertTemp(day.tempmin, unit));
 
-			clone.querySelector('.temp-max').textContent = `${maxTemp}${unit}`;
 			clone.querySelector('.temp-min').textContent = `${minTemp}${unit}`;
+			clone.querySelector('.temp-max').textContent = `${maxTemp}${unit}`;
 
 			forecastContainer.appendChild(clone);
 		});
