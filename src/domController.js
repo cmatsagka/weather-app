@@ -36,7 +36,6 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	const humidityElement = document.querySelector('#humidity');
 	const windSpeedElement = document.querySelector('#wind-speed');
 	const uvIndexElement = document.querySelector('#uv-index');
-	const forecastElement = document.querySelector('#forecast');
 	const template = document.querySelector('#forecast-card-template');
 
 	const formattedCity =
@@ -61,8 +60,8 @@ export function updateWeatherUI(data, city, unit = 'C') {
 		windSpeedElement.textContent = `${Math.round(data.windSpeed)} km/h`;
 	if (uvIndexElement) uvIndexElement.textContent = data.uvIndex;
 
-	if (forecastElement && template) {
-		forecastElement.textContent = '';
+	if (forecastContainer && template) {
+		forecastContainer.textContent = '';
 
 		data.forecast.slice(0, 5).forEach((day) => {
 			const clone = template.content.cloneNode(true);
@@ -82,7 +81,7 @@ export function updateWeatherUI(data, city, unit = 'C') {
 			clone.querySelector('.temp-max').textContent = `${maxTemp}${unit}`;
 			clone.querySelector('.temp-min').textContent = `${minTemp}${unit}`;
 
-			forecastElement.appendChild(clone);
+			forecastContainer.appendChild(clone);
 		});
 	}
 
