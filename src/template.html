@@ -13,6 +13,7 @@
 					<input
 						type="text"
 						id="city-input"
+						aria-label="Search for a city"
 						placeholder="Enter city name..."
 						required
 					/>
@@ -22,18 +23,18 @@
 			</div>
 		</header>
 		<main>
-			<div id="current-section">
-				<div id="current-weather">
+			<section id="current-section">
+				<div id="current-weather" aria-live="polite">
 					<div id="city-name"></div>
 					<div id="temp"></div>
 					<div id="condition"></div>
 					<div id="icon-container">
-						<i id="weather-icon" class="wi"></i>
+						<i id="weather-icon" class="wi" aria-hidden="true"></i>
 					</div>
 				</div>
-			</div>
-			<div id="weather-metrics"></div>
-			<div id="weather-forecast"></div>
+			</section>
+			<section id="weather-metrics" aria-live="polite"></section>
+			<section id="weather-forecast" aria-live="polite"></section>
 		</main>
 		<footer>
 			<p>Build with care and vanilla</p>
