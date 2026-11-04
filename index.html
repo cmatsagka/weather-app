@@ -17,7 +17,26 @@
 						placeholder="Enter city name..."
 						required
 					/>
-					<button type="submit" id="search-btn">Search</button>
+					<button
+						type="submit"
+						id="search-btn"
+						aria-label="Search city"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<circle cx="11" cy="11" r="8"></circle>
+							<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+						</svg>
+					</button>
 				</form>
 				<button id="unit-toggle">Display F°</button>
 			</div>
@@ -31,9 +50,38 @@
 					<i id="weather-icon" class="wi" aria-hidden="true"></i>
 				</div>
 			</section>
-			<section id="weather-metrics" aria-live="polite"></section>
-			<section id="weather-forecast" aria-live="polite"></section>
+			<section id="metrics-section" aria-live="polite">
+				<div class="metrics-card">
+					<span class="metric-label">Humidity</span>
+					<div id="humidity" class="metric-value"></div>
+					<span id="humidity-desc" class="metric-desc">---</span>
+				</div>
+				<div class="metrics-card">
+					<span class="metric-label">Wind Speed</span>
+					<div id="wind-speed" class="metric-value"></div>
+					<span id="wind-desc" class="metric-desc">---</span>
+				</div>
+				<div class="metrics-card">
+					<span class="metric-label">UV Index</span>
+					<div id="uv-index" class="metric-value"></div>
+					<span id="uv-desc" class="metric-desc">---</span>
+				</div>
+			</section>
+			<section id="forecast-wrapper">
+				<h3 class="section-title">7-Day Forecast</h3>
+				<div id="forecast-section" aria-live="polite"></div>
+			</section>
 		</main>
+		<template id="forecast-card-template">
+			<div class="forecast-card">
+				<p class="forecast-day"></p>
+				<i class="forecast-icon wi"></i>
+				<div class="forecast-temps">
+					<span class="temp-min"></span>
+					<span class="temp-max"></span>
+				</div>
+			</div>
+		</template>
 		<footer>
 			<p>Build with care and vanilla</p>
 		</footer>
