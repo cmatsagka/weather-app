@@ -91,16 +91,21 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	if (forecastContainer && template) {
 		forecastContainer.textContent = '';
 
-		data.forecast.slice(0, 7).forEach((day) => {
+		data.forecast.slice(0, 7).forEach((day, index) => {
 			const clone = template.content.cloneNode(true);
 			const dateObj = new Date(day.datetime);
-			const dayName = dateObj.toLocaleDateString('en-US', {
-				weekday: 'short',
-			});
+
+			const dayName =
+				index === 0
+					? 'Today'
+					: dateObj.toLocaleDateString('en-US', {
+							weekday: 'short',
+						});
 
 			clone.querySelector('.forecast-day').textContent = dayName;
 
 			const iconEl = clone.querySelector('.forecast-icon');
+			iconEl.className = 'forecast-icon wi';
 			iconEl.classList.add(iconClassMap[day.icon] || 'wi-na');
 
 			const maxTemp = Math.round(convertTemp(day.tempmax, unit));
