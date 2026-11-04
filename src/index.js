@@ -82,7 +82,7 @@ async function handleSearch(city) {
 	body.classList.remove('is-fetching');
 
 	if (searchBtn) {
-		searchBtn.textContent = 'Search';
+		searchBtn.classList.remove('is-loading');
 		searchBtn.disabled = false;
 	}
 }
@@ -94,7 +94,7 @@ if (form && input) {
 		if (!cityName) return;
 
 		if (searchBtn) {
-			searchBtn.textContent = 'Searching...';
+			searchBtn.classList.add('is-loading');
 			searchBtn.disabled = true;
 		}
 

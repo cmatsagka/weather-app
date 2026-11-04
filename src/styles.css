@@ -239,6 +239,10 @@ header {
 	transform: scale(1.1);
 }
 
+#search-btn.is-loading svg {
+	animation: spin 1s linear infinite;
+}
+
 main {
 	display: flex;
 	flex-direction: column;
@@ -418,6 +422,15 @@ footer {
 		opacity: 1;
 		transform: translateY(0);
 		filter: blur(0);
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
 	}
 }
 
