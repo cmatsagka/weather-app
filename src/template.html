@@ -32,9 +32,21 @@
 				</div>
 			</section>
 			<section id="metrics-section" aria-live="polite">
-				<div id="humidity"></div>
-				<div id="wind-speed"></div>
-				<div id="uv-index"></div>
+				<div class="metrics-card">
+					<span class="metric-label">Humidity</span>
+					<div id="humidity" class="metric-value"></div>
+					<span id="humidity-desc" class="metric-desc">---</span>
+				</div>
+				<div class="metrics-card">
+					<span class="metric-label">Wind Speed</span>
+					<div id="wind-speed" class="metric-value"></div>
+					<span id="wind-desc" class="metric-desc">---</span>
+				</div>
+				<div class="metrics-card">
+					<span class="metric-label">UV Index</span>
+					<div id="uv-index" class="metric-value"></div>
+					<span id="uv-desc" class="metric-desc">---</span>
+				</div>
 			</section>
 			<section id="forecast-section" aria-live="polite">
 				<template id="forecast-card-template">

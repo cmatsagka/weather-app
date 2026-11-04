@@ -1,3 +1,9 @@
+import {
+	getHumidityCategory,
+	getWindCategory,
+	getUVCategory,
+} from './utils.js';
+
 const iconClassMap = {
 	snow: 'wi-snow',
 	rain: 'wi-rain',
@@ -33,9 +39,16 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	const conditionElement = document.querySelector('#condition');
 	const iconElement = document.querySelector('#weather-icon');
 	const cityName = document.querySelector('#city-name');
+
 	const humidityElement = document.querySelector('#humidity');
+	const humidityDesc = document.querySelector('#humidity-desc');
+
 	const windSpeedElement = document.querySelector('#wind-speed');
+	const windDesc = document.querySelector('#wind-desc');
+
 	const uvIndexElement = document.querySelector('#uv-index');
+	const uvDesc = document.querySelector('#uv-desc');
+
 	const template = document.querySelector('#forecast-card-template');
 
 	const formattedCity =
@@ -54,11 +67,26 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	}
 	if (conditionElement) conditionElement.textContent = data.condition;
 
-	if (humidityElement)
+	if (humidityElement) {
 		humidityElement.textContent = `${Math.round(data.humidity)} %`;
-	if (windSpeedElement)
+		if (humidityDesc) {
+			humidityDesc.textContent = getHumidityCategory(data.humidity);
+		}
+	}
+
+	if (windSpeedElement) {
 		windSpeedElement.textContent = `${Math.round(data.windSpeed)} km/h`;
-	if (uvIndexElement) uvIndexElement.textContent = data.uvIndex;
+		if (windDesc) {
+			windDesc.textContent = getWindCategory(data.windSpeed);
+		}
+	}
+
+	if (uvIndexElement) {
+		uvIndexElement.textContent = data.uvIndex;
+		if (uvDesc) {
+			uvDesc.textContent = getUVCategory(data.uvIndex);
+		}
+	}
 
 	if (forecastContainer && template) {
 		forecastContainer.textContent = '';
