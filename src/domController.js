@@ -1,26 +1,49 @@
+const iconClassMap = {
+	snow: 'wi-snow',
+	rain: 'wi-rain',
+	fog: 'wi-fog',
+	'thunder-showers-day': 'wi-day-thunderstorm',
+	'thunder-showers-night': 'wi-night-alt-thunderstorm',
+	'thunder-rain': 'wi-thunderstorm',
+	wind: 'wi-strong-wind',
+	cloudy: 'wi-cloudy',
+	'partly-cloudy-day': 'wi-day-cloudy',
+	'partly-cloudy-night': 'wi-night-partly-cloudy',
+	'clear-day': 'wi-day-sunny',
+	'clear-night': 'wi-night-clear',
+};
+
+function convertTemp(temp, unit) {
+	return unit === 'C' ? temp : (temp * 9) / 5 + 32;
+}
+
 export function updateWeatherUI(data, city, unit = 'C') {
-	const weatherContainer = document.querySelector('#weatherData');
+	const weatherContainer = document.querySelector('#current-section');
+	if (!weatherContainer) return;
+
 	weatherContainer.classList.remove('animate-fade');
 	void weatherContainer.offsetWidth;
 
 	const tempElement = document.querySelector('#temp');
 	const conditionElement = document.querySelector('#condition');
-	const iconElement = document.querySelector('#weatherIcon');
-	const cityName = document.querySelector('#cityName');
-	city = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
+	const iconElement = document.querySelector('#weather-icon');
+	const cityName = document.querySelector('#city-name');
 
-	iconElement.className = 'wi';
-	const specificIconClass = iconClassMap[data.icon] || 'wi-na';
-	iconElement.classList.add(specificIconClass);
+	const formattedCity =
+		city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
 
-	cityName.textContent = '';
-	tempElement.textContent = '';
-	conditionElement.textContent = '';
+	if (iconElement) {
+		iconElement.className = 'wi';
+		const specificIconClass = iconClassMap[data.icon] || 'wi-na';
+		iconElement.classList.add(specificIconClass);
+	}
 
-	cityName.textContent = city;
-	const tempValue = convertTemp(data.temp, unit);
-	tempElement.textContent = `${Math.round(tempValue)}°${unit}`;
-	conditionElement.textContent = `${data.condition}`;
+	if (cityName) cityName.textContent = formattedCity;
+	if (tempElement) {
+		const tempValue = convertTemp(data.temp, unit);
+		tempElement.textContent = `${Math.round(tempValue)}°${unit}`;
+	}
+	if (conditionElement) conditionElement.textContent = data.condition;
 
 	let weatherMood = data.icon;
 
@@ -39,25 +62,7 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	} else if (data.icon.includes('fog') || data.icon.includes('mist')) {
 		weatherMood = 'fog';
 	}
+
 	document.body.setAttribute('data-weather', weatherMood);
 	weatherContainer.classList.add('animate-fade');
 }
-
-function convertTemp(temp, unit) {
-	return unit === 'C' ? temp : (temp * 9) / 5 + 32;
-}
-
-const iconClassMap = {
-	snow: 'wi-snow',
-	rain: 'wi-rain',
-	fog: 'wi-fog',
-	'thunder-showers-day': 'wi-day-thunderstorm',
-	'thunder-showers-night': 'wi-night-alt-thunderstorm',
-	'thunder-rain': 'wi-thunderstorm',
-	wind: 'wi-strong-wind',
-	cloudy: 'wi-cloudy',
-	'partly-cloudy-day': 'wi-day-cloudy',
-	'partly-cloudy-night': 'wi-night-partly-cloudy',
-	'clear-day': 'wi-day-sunny',
-	'clear-night': 'wi-night-clear',
-};
