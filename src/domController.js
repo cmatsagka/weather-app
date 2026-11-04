@@ -63,7 +63,7 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	if (cityName) cityName.textContent = formattedCity;
 	if (tempElement) {
 		const tempValue = convertTemp(data.temp, unit);
-		tempElement.textContent = `${Math.round(tempValue)}°${unit}`;
+		tempElement.textContent = `${Math.round(tempValue)} °${unit}`;
 	}
 	if (conditionElement) conditionElement.textContent = data.condition;
 
@@ -106,8 +106,10 @@ export function updateWeatherUI(data, city, unit = 'C') {
 			const maxTemp = Math.round(convertTemp(day.tempmax, unit));
 			const minTemp = Math.round(convertTemp(day.tempmin, unit));
 
-			clone.querySelector('.temp-min').textContent = `${minTemp}${unit}`;
-			clone.querySelector('.temp-max').textContent = `${maxTemp}${unit}`;
+			clone.querySelector('.temp-min').textContent =
+				`${minTemp}\u00A0°${unit}`;
+			clone.querySelector('.temp-max').textContent =
+				`${maxTemp}\u00A0°${unit}`;
 
 			forecastContainer.appendChild(clone);
 		});

@@ -301,11 +301,12 @@ body.is-fetching {
 	gap: var(--space-xs);
 	padding-bottom: var(--space-sm);
 	width: 100%;
-	overflow-x: auto;
+	overflow-x: hidden;
 }
 
 .forecast-card {
 	flex: 1 1 0;
+	min-width: 0;
 	background: var(--card-bg);
 	padding: var(--space-sm);
 	border-radius: var(--radius-sm);
