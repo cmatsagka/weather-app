@@ -8,27 +8,34 @@
 	<body>
 		<header>
 			<h2 id="logo">Aura</h2>
+			<div class="header-controls">
+				<form id="search-form">
+					<input
+						type="text"
+						id="city-input"
+						aria-label="Search for a city"
+						placeholder="Enter city name..."
+						required
+					/>
+					<button type="submit" id="search-btn">Search</button>
+				</form>
+				<button id="unit-toggle">Display F°</button>
+			</div>
 		</header>
-		<div id="content">
-			<form id="searchForm">
-				<input
-					type="text"
-					id="cityInput"
-					placeholder="Enter city name..."
-					required
-				/>
-				<button type="submit" id="search-btn">Search</button>
-			</form>
-			<button id="unitToggle">Display F°</button>
-
-			<div id="cityName"></div>
-			<div id="weatherData">
+		<main>
+			<section id="current-section" aria-live="polite">
+				<div id="city-name"></div>
 				<div id="temp"></div>
 				<div id="condition"></div>
-				<div id="iconContainer">
-					<i id="weatherIcon" class="wi"></i>
+				<div id="icon-container">
+					<i id="weather-icon" class="wi" aria-hidden="true"></i>
 				</div>
-			</div>
-		</div>
+			</section>
+			<section id="weather-metrics" aria-live="polite"></section>
+			<section id="weather-forecast" aria-live="polite"></section>
+		</main>
+		<footer>
+			<p>Build with care and vanilla</p>
+		</footer>
 	</body>
 </html>
