@@ -103,6 +103,7 @@ body {
 	@supports (font-variation-settings: normal) {
 		font-family: 'Inter var', sans-serif;
 	}
+	font-size: var(--font-base);
 	background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
 	color: var(--text-main);
 	transition: all var(--transition-speed) ease-in-out;
@@ -112,12 +113,13 @@ header {
 	display: flex;
 	align-items: center;
 	width: 100%;
-	padding: 1.5rem;
+	padding: var(--space-md);
 }
 
 #logo {
 	margin-right: auto;
 	font-weight: 200;
+	font-size: var(--font-lg);
 	letter-spacing: 0.5rem;
 	text-transform: uppercase;
 	opacity: 0.8;
@@ -126,34 +128,35 @@ header {
 .header-controls {
 	display: flex;
 	align-items: center;
-	gap: 1.5rem;
+	gap: var(--space-md);
 }
 
 #search-form {
 	display: flex;
-	gap: 10px;
+	gap: var(--space-sm);
 }
 
 #city-input {
 	background: transparent;
 	border: none;
-	border-radius: 12px;
+	border-radius: var(--radius-sm);
 	border-bottom: 2px solid var(--text-main);
 	color: var(--text-main);
-	padding: 5px;
+	padding: var(--space-xs);
 	outline: none;
 	flex-grow: 1;
+	font-size: inherit;
 }
 
 #unit-toggle {
-	background: hsla(0, 0%, 100%, 0.1);
-	border: 1px solid hsla(0, 0%, 100%, 0.2);
-	padding: 10px 15px;
+	background: var(--card-bg);
+	border: var(--card-border);
+	padding: var(--space-xs) var(--space-sm);
 	border-radius: 50px;
 	cursor: pointer;
 	font-family: inherit;
 	transition: all 0.3s ease;
-	font-size: 0.8rem;
+	font-size: var(--font-xs);
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }
