@@ -32,7 +32,18 @@
 				</div>
 			</section>
 			<section id="metrics-section" aria-live="polite"></section>
-			<section id="forecast-section" aria-live="polite"></section>
+			<section id="forecast-section" aria-live="polite">
+				<template id="forecast-card-template">
+					<div class="forecast-card">
+						<p class="forecast-day"></p>
+						<i class="forecast-icon wi"></i>
+						<div class="forecast-temps">
+							<span class="temp-max"></span>
+							<span class="temp-min"></span>
+						</div>
+					</div>
+				</template>
+			</section>
 		</main>
 		<footer>
 			<p>Build with care and vanilla</p>

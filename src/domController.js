@@ -37,6 +37,7 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	const windSpeedElement = document.querySelector('#wind-speed');
 	const uvIndexElement = document.querySelector('#uv-index');
 	const forecastElement = document.querySelector('#forecast');
+	const template = document.querySelector('#forecast-card-template');
 
 	const formattedCity =
 		city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
@@ -60,11 +61,28 @@ export function updateWeatherUI(data, city, unit = 'C') {
 		windSpeedElement.textContent = `${Math.round(data.windSpeed)} km/h`;
 	if (uvIndexElement) uvIndexElement.textContent = data.uvIndex;
 
-	if (forecastElement) {
+	if (forecastElement && template) {
 		forecastElement.textContent = '';
 
-		data.forecast.forEach((day) => {
-			day.datetime = new Date(day.datetime);
+		data.forecast.slice(0, 5).forEach((day) => {
+			const clone = template.content.cloneNode(true);
+			const dateObj = new Date(day.datetime);
+			const dayName = dateObj.toLocaleDateString('en-US', {
+				weekday: 'short',
+			});
+
+			clone.querySelector('.forecast-day').textContent = dayName;
+
+			const iconEl = clone.querySelector('.forecast-icon');
+			iconEl.classList.add(iconClassMap[day.icon] || 'wi-na');
+
+			const maxTemp = Math.round(convertTemp(day.tempmax, unit));
+			const minTemp = Math.round(convertTemp(day.tempmin, unit));
+
+			clone.querySelector('.temp-max').textContent = `${maxTemp}${unit}`;
+			clone.querySelector('.temp-min').textContent = `${minTemp}${unit}`;
+
+			forecastElement.appendChild(clone);
 		});
 	}
 
