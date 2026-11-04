@@ -87,7 +87,9 @@ body[data-weather*='cloudy-night'] {
 	--text-main: hsl(210, 20%, 90%);
 }
 
-* {
+*,
+*::before,
+*::after {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -95,6 +97,8 @@ body[data-weather*='cloudy-night'] {
 
 body {
 	min-height: 100vh;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -107,6 +111,19 @@ body {
 	background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
 	color: var(--text-main);
 	transition: all var(--transition-speed) ease-in-out;
+}
+
+img,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
 }
 
 header {
@@ -145,7 +162,6 @@ header {
 	padding: var(--space-xs);
 	outline: none;
 	flex-grow: 1;
-	font-size: inherit;
 }
 
 #unit-toggle {
@@ -154,7 +170,6 @@ header {
 	padding: var(--space-xs) var(--space-sm);
 	border-radius: 50px;
 	cursor: pointer;
-	font-family: inherit;
 	transition: all 0.3s ease;
 	font-size: var(--font-xs);
 	text-transform: uppercase;
