@@ -63,7 +63,7 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	if (forecastContainer && template) {
 		forecastContainer.textContent = '';
 
-		data.forecast.slice(0, 5).forEach((day) => {
+		data.forecast.slice(0, 7).forEach((day) => {
 			const clone = template.content.cloneNode(true);
 			const dateObj = new Date(day.datetime);
 			const dayName = dateObj.toLocaleDateString('en-US', {

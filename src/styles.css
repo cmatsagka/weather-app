@@ -176,6 +176,17 @@ header {
 	letter-spacing: 1px;
 }
 
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-md);
+	width: 100%;
+	max-width: clamp(350px, 50vw, 750px);
+	margin: var(--space-md) 0;
+	padding: 0 var(--space-md);
+}
+
 #current-section {
 	background: var(--card-bg);
 	backdrop-filter: blur(30px) saturate(150%);
@@ -186,7 +197,7 @@ header {
 	box-shadow: var(--card-shadow);
 	text-align: center;
 	width: 100%;
-	max-width: clamp(350px, 50vw, 550px);
+	/* max-width: clamp(350px, 50vw, 550px); */
 	opacity: 0;
 }
 
@@ -250,9 +261,9 @@ body.is-fetching {
 
 #metrics-section {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 	gap: var(--space-sm);
-	margin: var(--space-md) 0;
+	width: 100%;
 }
 
 #metrics-section > div {
@@ -265,21 +276,22 @@ body.is-fetching {
 
 #forecast-section {
 	display: flex;
-	overflow-x: auto;
-	gap: var(--space-md);
+	gap: var(--space-xs);
 	padding-bottom: var(--space-sm);
+	width: 100%;
+	overflow-x: auto;
 }
 
 .forecast-card {
+	flex: 1 1 0;
 	background: var(--card-bg);
-	padding: var(--space-md);
+	padding: var(--space-sm);
 	border-radius: var(--radius-sm);
-	min-width: 100px;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: var(--space-sm);
+	gap: var(--space-xs);
 	backdrop-filter: blur(8px);
 }
 
