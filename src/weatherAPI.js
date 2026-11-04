@@ -24,7 +24,15 @@ export async function getWeather(city) {
 
 		const forecast = fetchedData.days ? fetchedData.days.slice(0, 7) : [];
 
-		return { temp, condition, icon, humidity, windSpeed, uvIndex };
+		return {
+			temp,
+			condition,
+			icon,
+			humidity,
+			windSpeed,
+			uvIndex,
+			forecast,
+		};
 	} catch (error) {
 		console.log('The fetch failed: ', error.message);
 		return null;

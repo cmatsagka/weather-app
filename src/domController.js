@@ -19,7 +19,12 @@ function convertTemp(temp, unit) {
 
 export function updateWeatherUI(data, city, unit = 'C') {
 	const weatherContainer = document.querySelector('#current-section');
+	const metricsContainer = document.querySelector('#metrics-section');
+	const forecastContainer = document.querySelector('#forecast-section');
+
 	if (!weatherContainer) return;
+	if (!metricsContainer) return;
+	if (!forecastContainer) return;
 
 	weatherContainer.classList.remove('animate-fade');
 	void weatherContainer.offsetWidth;
@@ -28,6 +33,10 @@ export function updateWeatherUI(data, city, unit = 'C') {
 	const conditionElement = document.querySelector('#condition');
 	const iconElement = document.querySelector('#weather-icon');
 	const cityName = document.querySelector('#city-name');
+	const humidityElement = document.querySelector('#humidity');
+	const windSpeedElement = document.querySelector('#wind-speed');
+	const uvIndexElement = document.querySelector('#uv-index');
+	const forecastElement = document.querySelector('#forecast');
 
 	const formattedCity =
 		city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
@@ -44,6 +53,20 @@ export function updateWeatherUI(data, city, unit = 'C') {
 		tempElement.textContent = `${Math.round(tempValue)}°${unit}`;
 	}
 	if (conditionElement) conditionElement.textContent = data.condition;
+
+	if (humidityElement)
+		humidityElement.textContent = `${Math.round(data.humidity)} %`;
+	if (windSpeedElement)
+		windSpeedElement.textContent = `${Math.round(data.windSpeed)} km/h`;
+	if (uvIndexElement) uvIndexElement.textContent = data.uvIndex;
+
+	if (forecastElement) {
+		forecastElement.textContent = '';
+
+		data.forecast.forEach((day) => {
+			day.datetime = new Date(day.datetime);
+		});
+	}
 
 	let weatherMood = data.icon;
 
