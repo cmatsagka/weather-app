@@ -35,35 +35,44 @@ document.addEventListener('keydown', (e) => {
 });
 
 async function initApp() {
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(
-			async (position) => {
-				const { latitude, longitude } = position.coords;
-				const data = await getWeatherByCoords(latitude, longitude);
-				if (data) {
-					currentWeatherData = data;
-					currentCity = data.cityName;
-					updateWeatherUI(data, currentCity, currentUnit);
+	const urlParams = new URLSearchParams(window.location.search);
+	const cityFromUrl = urlParams.get('city');
 
-					if (data.cityName !== 'Current Location') {
-						const cleanCity = data.cityName.split(',')[0].trim();
-						localStorage.setItem('aura_last_city', cleanCity);
-					}
-				}
-			},
-			async (error) => {
-				console.warn(
-					'Geolocation permission denied or unavailable. Falling back to default city.'
-				);
-				await loadFallbackCity();
-			},
-			{
-				timeout: 10000,
-				maximumAge: 0,
-			}
-		);
+	if (cityFromUrl) {
+		handleSearch(cityFromUrl, false);
 	} else {
-		await loadFallbackCity();
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				async (position) => {
+					const { latitude, longitude } = position.coords;
+					const data = await getWeatherByCoords(latitude, longitude);
+					if (data) {
+						currentWeatherData = data;
+						currentCity = data.cityName;
+						updateWeatherUI(data, currentCity, currentUnit);
+
+						if (data.cityName !== 'Current Location') {
+							const cleanCity = data.cityName
+								.split(',')[0]
+								.trim();
+							localStorage.setItem('aura_last_city', cleanCity);
+						}
+					}
+				},
+				async (error) => {
+					console.warn(
+						'Geolocation permission denied or unavailable. Falling back to default city.'
+					);
+					await loadFallbackCity();
+				},
+				{
+					timeout: 10000,
+					maximumAge: 0,
+				}
+			);
+		} else {
+			await loadFallbackCity();
+		}
 	}
 }
 
@@ -79,7 +88,19 @@ async function loadFallbackCity() {
 	}
 }
 
-async function handleSearch(city) {
+function updateUrl(city, shouldPushState = true) {
+	if (!city) return;
+	const url = new URL(window.location);
+	url.searchParams.set('city', city);
+
+	if (shouldPushState) {
+		window.history.pushState({ city }, '', url);
+	} else {
+		window.history.replaceState({ city }, '', url);
+	}
+}
+
+async function handleSearch(city, shouldPushState = true) {
 	if (!currentSection) return;
 
 	const body = document.body;
@@ -88,11 +109,13 @@ async function handleSearch(city) {
 	body.classList.add('is-fetching');
 
 	const data = await getWeather(city);
+
 	if (data) {
 		currentWeatherData = data;
 		currentCity = city;
 		localStorage.setItem('aura_last_city', city);
 		updateWeatherUI(currentWeatherData, currentCity, currentUnit);
+		updateUrl(currentCity, shouldPushState);
 	}
 
 	currentSection.classList.remove('loading-blur');
@@ -103,6 +126,17 @@ async function handleSearch(city) {
 		searchBtn.disabled = false;
 	}
 }
+
+window.addEventListener('popstate', (e) => {
+	const urlParams = new URLSearchParams(window.location.search);
+	const cityFromUrl = urlParams.get('city');
+
+	if (cityFromUrl) {
+		handleSearch(cityFromUrl, false);
+	} else {
+		loadFallbackCity();
+	}
+});
 
 if (form && input) {
 	form.addEventListener('submit', (e) => {
