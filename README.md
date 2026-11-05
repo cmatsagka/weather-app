@@ -6,7 +6,7 @@
 
 <table>
   <tr>
-    <td align="center"><b>Day State (Partially Cloudy)</b></td>
+    <td align="center"><b>Day State (Overcast)</b></td>
     <td align="center"><b>Night State (Partially Cloudy)</b></td>
   </tr>
   <tr>
@@ -27,6 +27,9 @@ Most weather apps feel static. **Aura** was built to feel like the sky itself. B
 - **Airy UI & Glassmorphism:** Utilizes `backdrop-filter: blur` and smooth CSS transitions to create a sense of depth and lightness.
 - **Interactive UI Feedback:** Responsive search button with a smooth CSS spinner animation during network requests to eliminate layout shifts.
 - **Unit Toggling:** Instant Celsius to Fahrenheit conversion without redundant API calls.
+- **URL Query Syncing:** Instantly syncs the current city to the URL search params (`?city=...`) with full `popstate` support, enabling seamless browser back/forward navigation and shareable links.
+- **Global Weather Moods Showcase:** A dynamic multi-city dashboard section powered by concurrent `Promise.all` fetching and HTML templates, allowing instant one-click preview switching.
+- **Keyboard Accessibility:** Quick-action `/` hotkey to focus and select the search input instantly, with `Escape` to blur.
 
 ---
 
