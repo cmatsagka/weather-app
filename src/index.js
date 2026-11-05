@@ -1,7 +1,7 @@
 import './styles.css';
 import 'weather-icons/css/weather-icons.css';
 import { getWeather, getWeatherByCoords } from './weatherAPI.js';
-import { updateWeatherUI } from './domController.js';
+import { updateWeatherUI, renderGlobalShowcase } from './domController.js';
 
 let currentWeatherData = null;
 let currentUnit = 'C';
@@ -14,6 +14,7 @@ const toggleBtn = document.querySelector('#unit-toggle');
 const currentSection = document.querySelector('#current-section');
 
 document.addEventListener('DOMContentLoaded', () => {
+	renderGlobalShowcase();
 	initApp();
 });
 
@@ -31,6 +32,18 @@ document.addEventListener('keydown', (e) => {
 		input.select();
 	} else if (e.key === 'Escape' && document.activeElement === input) {
 		input.blur();
+	}
+});
+
+document.addEventListener('click', (e) => {
+	const card = e.target.closest('.global-card');
+	if (!card) return;
+
+	const city = card.getAttribute('data-city');
+	if (city) {
+		if (input) input.value = city;
+		handleSearch(city);
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 });
 

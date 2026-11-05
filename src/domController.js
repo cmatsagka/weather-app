@@ -19,8 +19,36 @@ const iconClassMap = {
 	'clear-night': 'wi-night-clear',
 };
 
+const GLOBAL_CITIES = [
+	{ city: 'Miami', condition: '☀️ Sunny' },
+	{ city: 'London', condition: '🌧️ Rainy' },
+	{ city: 'Oslo', condition: '❄️ Snowy' },
+	{ city: 'Tokyo', condition: '🌙 Night' },
+];
+
 function convertTemp(temp, unit) {
 	return unit === 'C' ? temp : (temp * 9) / 5 + 32;
+}
+
+export function renderGlobalShowcase() {
+	const container = document.getElementById('global-showcase-container');
+	const templateShowcase = document.getElementById('global-card-template');
+
+	if (!container || !templateShowcase) return;
+	if (container.querySelector('.global-card')) return;
+
+	GLOBAL_CITIES.forEach(({ city, condition }) => {
+		const clone = templateShowcase.content.cloneNode(true);
+		const cardButton = clone.querySelector('.global-card');
+		const citySpan = clone.querySelector('.global-city');
+		const conditionSpan = clone.querySelector('.global-condition');
+
+		cardButton.setAttribute('data-city', city);
+		citySpan.textContent = city;
+		conditionSpan.textContent = condition;
+
+		container.appendChild(clone);
+	});
 }
 
 export function updateWeatherUI(data, city, unit = 'C') {
