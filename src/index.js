@@ -17,6 +17,23 @@ document.addEventListener('DOMContentLoaded', () => {
 	initApp();
 });
 
+document.addEventListener('keydown', (e) => {
+	const input = document.getElementById('city-input');
+	if (!input) return;
+
+	const isTyping = ['INPUT', 'TEXTAREA'].includes(
+		document.activeElement.tagName
+	);
+
+	if (e.key === '/' && !isTyping) {
+		e.preventDefault();
+		input.focus();
+		input.select();
+	} else if (e.key === 'Escape' && document.activeElement === input) {
+		input.blur();
+	}
+});
+
 async function initApp() {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(
