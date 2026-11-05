@@ -6,6 +6,7 @@ import { updateWeatherUI, renderGlobalShowcase } from './domController.js';
 let currentWeatherData = null;
 let currentUnit = 'C';
 let currentCity = null;
+let globalShowcaseData = [];
 
 const searchBtn = document.querySelector('#search-btn');
 const form = document.querySelector('#search-form');
@@ -13,9 +14,11 @@ const input = document.querySelector('#city-input');
 const toggleBtn = document.querySelector('#unit-toggle');
 const currentSection = document.querySelector('#current-section');
 
+const SHOWCASE_TARGETS = ['Miami', 'London', 'Oslo', 'Tokyo'];
+
 document.addEventListener('DOMContentLoaded', () => {
-	renderGlobalShowcase();
 	initApp();
+	initGlobalShowcase();
 });
 
 document.addEventListener('keydown', (e) => {
@@ -46,6 +49,17 @@ document.addEventListener('click', (e) => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 });
+
+async function initGlobalShowcase() {
+	try {
+		const promises = SHOWCASE_TARGETS.map((city) => getWeather(city));
+		const results = await Promise.all(promises);
+		globalShowcaseData = results.filter(Boolean);
+		renderGlobalShowcase(globalShowcaseData, currentUnit);
+	} catch (err) {
+		console.warn('Failed to load live showcase conditions: ', err);
+	}
+}
 
 async function initApp() {
 	const urlParams = new URLSearchParams(window.location.search);
@@ -173,6 +187,10 @@ if (toggleBtn) {
 			currentUnit === 'C' ? 'Display °F' : 'Display °C';
 		if (currentWeatherData && currentCity) {
 			updateWeatherUI(currentWeatherData, currentCity, currentUnit);
+		}
+
+		if (globalShowcaseData.length > 0) {
+			renderGlobalShowcase(globalShowcaseData, currentUnit);
 		}
 	});
 }

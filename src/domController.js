@@ -19,33 +19,36 @@ const iconClassMap = {
 	'clear-night': 'wi-night-clear',
 };
 
-const GLOBAL_CITIES = [
-	{ city: 'Miami', condition: '☀️ Sunny' },
-	{ city: 'London', condition: '🌧️ Rainy' },
-	{ city: 'Oslo', condition: '❄️ Snowy' },
-	{ city: 'Tokyo', condition: '🌙 Night' },
-];
-
 function convertTemp(temp, unit) {
 	return unit === 'C' ? temp : (temp * 9) / 5 + 32;
 }
 
-export function renderGlobalShowcase() {
+export function renderGlobalShowcase(cityDataArray = [], unit = 'C') {
 	const container = document.getElementById('global-showcase-container');
 	const templateShowcase = document.getElementById('global-card-template');
 
 	if (!container || !templateShowcase) return;
-	if (container.querySelector('.global-card')) return;
 
-	GLOBAL_CITIES.forEach(({ city, condition }) => {
+	container.querySelectorAll('.global-card').forEach((card) => card.remove());
+
+	cityDataArray.forEach((data) => {
 		const clone = templateShowcase.content.cloneNode(true);
 		const cardButton = clone.querySelector('.global-card');
 		const citySpan = clone.querySelector('.global-city');
 		const conditionSpan = clone.querySelector('.global-condition');
 
+		const city = data.cityName || data.city;
+		const condition = data.condition || 'CLear';
+
 		cardButton.setAttribute('data-city', city);
 		citySpan.textContent = city;
-		conditionSpan.textContent = condition;
+
+		const tempVal =
+			data.temp !== undefined
+				? Math.round(convertTemp(data.temp, unit))
+				: null;
+		const tempStr = tempVal !== null ? `${tempVal}°${unit} • ` : '';
+		conditionSpan.textContent = `${tempStr}${condition}`;
 
 		container.appendChild(clone);
 	});
